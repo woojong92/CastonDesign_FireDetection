@@ -27,12 +27,18 @@ endif
 -include ../makefile.defs
 
 # Add inputs and outputs from these tool invocations to the build variables 
+SECONDARY_FLASH += \
+tinyara.bin \
+
+SECONDARY_HEADBIN += \
+tinyara_head.bin \
+
 
 # All Target
 all: pre-build main-build
 
 # Main-build Target
-main-build: CAPSTON_Lamp
+main-build: CAPSTON_Lamp secondary-outputs
 
 # Tool invocations
 CAPSTON_Lamp: $(OBJS) $(USER_OBJS)
@@ -43,9 +49,21 @@ CAPSTON_Lamp: $(OBJS) $(USER_OBJS)
 	@echo ' '
 	$(MAKE) --no-print-directory post-build
 
+tinyara.bin: CAPSTON_Lamp
+	@echo 'Invoking: ARTIK GCC Create Flash Image'
+	arm-none-eabi-objcopy -O binary "CAPSTON_Lamp"  "tinyara.bin"
+	@echo 'Finished building: $@'
+	@echo ' '
+
+tinyara_head.bin: tinyara.bin
+	@echo 'Invoking: ARTIK GCC Create Head Bin'
+	C:/ARTIK/SDK/A053/v1.2/common/tools/s5jchksum.py "tinyara.bin"  "tinyara_head.bin"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(ASM_DEPS)$(S_UPPER_DEPS)$(C_DEPS) CAPSTON_Lamp
+	-$(RM) $(OBJS)$(SECONDARY_FLASH)$(ASM_DEPS)$(S_UPPER_DEPS)$(SECONDARY_HEADBIN)$(C_DEPS) CAPSTON_Lamp
 	-@echo ' '
 
 pre-build:
@@ -57,6 +75,8 @@ post-build:
 	-@echo 'add header and add tailer'
 	-arm-none-eabi-objcopy -O binary ./"CAPSTON_Lamp" ./tinyara.bin;"C:/ARTIK/SDK/A053/v1.2/common/tools/s5jchksum.py" tinyara.bin tinyara_head.bin;
 	-@echo ' '
+
+secondary-outputs: $(SECONDARY_FLASH) $(SECONDARY_HEADBIN)
 
 .PHONY: all clean dependents
 .SECONDARY: main-build pre-build post-build

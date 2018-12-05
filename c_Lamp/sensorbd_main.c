@@ -28,11 +28,12 @@
 #define RED_ON_BOARD_LED 45
 #define NET_DEVNAME "wl1"
 
-char device_id[] = 		"device id";
-char device_token[] = 		"device token";
+char device_id[] = 		"device_id";
+char device_token[] = 		"device_token";
 
 char *strTopicMsg;
 char *strTopicAct;
+
 
 static const char mqtt_ca_cert_str[] = \
 		"-----BEGIN CERTIFICATE-----\r\n"
@@ -100,6 +101,7 @@ static const char mqtt_ca_cert_str[] = \
 		"c+LJMto4JQtV05od8GiG7S5BNO98pVAdvzr508EIDObtHopYJeS4d60tbvVS3bR0\r\n"
 		"j6tJLp07kzQoH3jOlOrHvdPJbRzeXDLz\r\n"
 		"-----END CERTIFICATE-----\r\n";
+
 
 // mqtt client handle
 mqtt_client_t* pClientHandle = NULL;

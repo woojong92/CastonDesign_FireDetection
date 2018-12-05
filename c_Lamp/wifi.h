@@ -9,7 +9,7 @@
 #define SLSI_WIFI_SECURITY_WPA2_AES "wpa2_aes"
 
 #define SSID "ssid"
-#define PSK  "12345"
+#define PSK  "psk"
 
 slsi_security_config_t *getSecurityConfig(char *sec_type,
         char *psk, WiFi_InterFace_ID_t mode);
