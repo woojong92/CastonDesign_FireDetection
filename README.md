@@ -4,6 +4,10 @@ Woo-Jong Kim, Hyeon-Sung Kim, Seong-Hun Park, Jae-Yeong Park  Joong-Jin Kook
 
 *Dept of Information Protection Engineering, Sangmyung University
 
+## 시연영상 ##
+
+https://drive.google.com/open?id=1S5DUTUIdCixG_LY5UgHv7O9SXFefIG3v
+
 ## Development environment ##
 
 1. Artik053 module
