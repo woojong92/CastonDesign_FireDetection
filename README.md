@@ -85,3 +85,7 @@ Current_Pixel[i]-Before_Pixel[i]>=10 경우는 천장높이 2.5m를 기준으로
 ## 화재현장 피해자 대피 유도기술 구현 ##
 
 ![FireResponseSystem](./image/FireResponseSystem.JPG)
+
+## 기대효과 ##
+
+![result](./image/result.JPG)
