@@ -1,4 +1,4 @@
-# Design of Fire Detection and Fire Response System based on IoT using Thermal Imaging  Sensor #
+# 열화상 이미지 센서를 활용한 IoT 기반의 화재감지기 및 화재 대응 시스템 설계 #
 
 Woo-Jong Kim, Hyeon-Sung Kim, Seong-Hun Park, Jae-Yeong Park  Joong-Jin Kook
 
@@ -43,14 +43,14 @@ https://drive.google.com/open?id=1S5DUTUIdCixG_LY5UgHv7O9SXFefIG3v
 
 ## Hardware Configuration ##
 
-![Hardware](./image/Hardware.PNG)
+![Hardware](./image/hardware.JPG)
 
   설계한 화재감지기는 Artik053 보드를 기반으로 AMG8833센서, MAX30501센서, LED, Buzzer, Power Boost 500 Charger, 리튬 배터리로 구성하였다.         
  Artik053은 삼성에서 개발한 IoT(Internet of Things)를 위한 하드웨어 플랫폼이다.[2] AMG8833은 Panasonic에서 개발한 열화상 이미지 센서로 GridEYE라고도 불리며, I2C통신을 통해 64개의 개별 적외선 온도 판독 값을 배열로 반환한다.[3] MAX30105센서는 세 개의 LED(빨강, 초록, IR)와 매우 민감한 photon detector를 가지고 있는데, LED를 번갈아 펄스 신호를 주고 무엇이 반사돼서 돌아오는지를 검출한다.[4] 이를 통해 불에서 나는 연기를 감지할 수 있다. LED는 화재감지기의 작동 유무를 파악하기 위해 사용되었으며, 화재가 발생하면 시각적인 화재경보를 한다. Buzzer는 화재 발생상황에서 청각적인 화재경보를 한다. Power Boost 500 Charger와 리튬 배터리는 화재상황에서 전력이 차단되었을 경우를 대비하여 구성하였다.
 
 ## Application Configuration ##
 
-![Application](./image/Application.JPG)
+![Application](./image/Application2.JPG)
 
  **메인 화면**은 그룹별로 화재 감시상황을 모니터링 할 수 있도록 구성하였다. 메인화면에서 그룹을 누르면 해당 그룹의 상세 정보 화면으로 넘어 간다. 애플리케이션의 하단에는 [추가]버튼, [제어]버튼, [119]버튼을 만들었다. 메인화면에서의 [추가]버튼은 그룹을 추가하는 버튼이며, **그룹 상세 정보 화면**에서의 [추가]버튼은 해당 그룹에 화재감지기를 추가하는 버튼이다. [제어]버튼을 누르면 소방시설제어 창으로 이동하며 건물의 Sprinkler, Siren, 대피로 안내 시스템을 제어 가능하다. [119]버튼은 사용자가 화재방생 및 긴급 상황 시 119구조대에 즉시 연락을 취할 수 있도록 돕는다. 
 
@@ -67,6 +67,7 @@ https://drive.google.com/open?id=1S5DUTUIdCixG_LY5UgHv7O9SXFefIG3v
 
 ![GrideyeData](./image/grideyeData.PNG)
 
+
 ## 열화상 이미지센서 기반의 화재감지 알고리즘 설계  ##
 
 <그림 6>은 열화상 이미지센서 기반의 화재감지 알고리즘 순서도를 나타낸다. 본 논문은 기존의 차동식 감지기의 감지방식인 분당 온도상승률이 15℃ 이상 일 경우 작동되는 특징과 64개의 Pixel Array로 온도데이터를 얻을 수 있는 열화상 이미지 센서 AMG8833의 특성을 결합하여 화재감지 알고리즘을 설계하였다.
@@ -75,5 +76,12 @@ https://drive.google.com/open?id=1S5DUTUIdCixG_LY5UgHv7O9SXFefIG3v
 Current_Pixel[i]-Before_Pixel[i]>=10 경우는 천장높이 2.5m를 기준으로 화재감지기는 약 0.6㎡의 면적의 분당 온도상승률이  15℃ 이상임을 뜻한다. 
  Count된 이상징후의 수가 0보다 크다면 사용자에게 이상징후가 발생함을 알리다. Count된 이상이징후의 수가 4 이상이라면 2.5m를 기준으로 약 3.2㎡의 면적에서 분당 온도상승률이 15℃ 이상 일 경우이며 이는 일반적인 실내에서 발생할 수 없는 상황이다. 이 경우 화재 발생이 매우 의심되는 상황이며 화재경보를 통해 화재 사실을 알린다.  
 
+![Algorithm](./image/Algorithm.JPG)
 
-![GrideyeData](./image/FireDetectionAlgorithm.JPG)
+## IoT 기술을 통한 화재 감시 모니터링 시스템 구현 ##
+
+![ArtikCloud](./image/ArtikCloud.JPG)
+
+## 화재현장 피해자 대피 유도기술 구현 ##
+
+![FireResponseSystem](./image/FireResponseSystem.JPG)
